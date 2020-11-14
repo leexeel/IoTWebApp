@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  WebServer:
+    build:
+      context: .
+      dockerfile: Dockerfile.WebServer
+    container_name: WebServer
+    ports: 
+      - 1414:80
+    volumes:
+      - web:/var/www/html
+    links:
+      - "iotDB"
+    #command: docker-php-ext-install mysqli #&& docker-php-ext-enable mysqli
+  iotDB:
+    #image: mysql:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.iotDB
+    container_name: iotDB
+    environment:
+      MYSQL_DATABASE: 'iot'
+      MYSQL_USER: 'iot_user'
+      MYSQL_PASSWORD: 'init1234'
+      MYSQL_ROOT_PASSWORD: 'TiTsPfRoot'
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  db:
