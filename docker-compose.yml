@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  WebServer:
+  webserver:
     build:
       context: .
       dockerfile: Dockerfile.WebServer
@@ -9,12 +9,10 @@ services:
     ports: 
       - 1414:80
     volumes:
-      - web:/var/www/html
+      - ./web:/var/www/html
     links:
-      - "iotDB"
-    #command: docker-php-ext-install mysqli #&& docker-php-ext-enable mysqli
-  iotDB:
-    #image: mysql:latest
+      - "iotdb"
+  iotdb:
     build:
       context: .
       dockerfile: Dockerfile.iotDB
@@ -29,8 +27,12 @@ services:
     expose:
       - 3306
     volumes:
-      - db:/var/lib/mysql
-      - dbScripts/createTables.sql:/docker-entrypoint-initdb.d/createTables.sql
+      - ./db:/var/lib/mysql
+      - ./dbScripts/createTables.sql:/docker-entrypoint-initdb.d/createTables.sql
 
 volumes:
   db:
+  dbScripts:
+  web:
+
+
