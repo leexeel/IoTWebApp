@@ -23,7 +23,7 @@ services:
     expose:
       - 3306
     volumes:
-      - ./db:/var/lib/mysql
+      #- ./db:/var/lib/mysql
       - ./dbScripts/createTables.sql:/docker-entrypoint-initdb.d/createTables.sql
 
 volumes:
