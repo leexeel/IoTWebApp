@@ -2,7 +2,9 @@ version: '3.4'
 
 services:
   webserver:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: WebServer
     ports: 
       - 1414:80
@@ -23,12 +25,13 @@ services:
     expose:
       - 3306
     volumes:
-      #- ./db:/var/lib/mysql
+      - ../IotDB:/var/lib/mysql
       - ./dbScripts/createTables.sql:/docker-entrypoint-initdb.d/createTables.sql
 
 volumes:
   db:
   dbScripts:
   web:
+  IotDB:
 
 
