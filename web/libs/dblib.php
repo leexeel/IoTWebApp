@@ -1,5 +1,5 @@
 <?php
-../include/include.php
+include 'include.php';
 
 function dbConnect() {
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -9,5 +9,4 @@ function dbConnect() {
     }
     return $conn;
 }
-
 ?>
