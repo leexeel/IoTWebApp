@@ -2,9 +2,7 @@ version: '3.4'
 
 services:
   webserver:
-    build:
-      context: .
-      dockerfile: Dockerfile.WebServer
+    build: .
     container_name: WebServer
     ports: 
       - 1414:80
@@ -13,9 +11,7 @@ services:
     links:
       - "iotdb"
   iotdb:
-    build:
-      context: .
-      dockerfile: Dockerfile.iotDB
+    image: mysql:latest
     container_name: iotDB
     environment:
       MYSQL_DATABASE: 'iot'
