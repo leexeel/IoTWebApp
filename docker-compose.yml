@@ -33,5 +33,6 @@ volumes:
   dbScripts:
   web:
   IotDB:
+  IotWebApp:
 
 
