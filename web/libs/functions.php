@@ -11,12 +11,17 @@ function guidv4()
     return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
 
+function getPasswordHash($password){
+    return(hash("sha256",$password,FALSE));
+}
+
 function drawPage(){
 echo " 
 <div class=mainPage>
     <div class=\"mainLeft\">
         <a class= meniu href=index.php>Main page</a><br>
         <a class= meniu href=newdevice.php>Register new device</a>
+        <a class= meniu href=viewdevice.php>View devices</a>
     </div>
 
 ";
