@@ -7,6 +7,14 @@
 
 <?php
 include "libs/functions.php";
-
 drawPage();
+echo "
+<div class=\"container\">
+aici ar trebui sa fie:
+";
+echo $_POST["devName"];
+echo "
+</div>
+";
+
 ?>

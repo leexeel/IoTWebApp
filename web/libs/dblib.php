@@ -13,4 +13,14 @@ function dbConnect() {
   }
   return $conn;
 }
+
+function dbSelect($sqlString){
+
+}
+
+function dbInsert($sqlString){
+
+}
+
 ?>
+

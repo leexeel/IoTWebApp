@@ -1,5 +1,6 @@
 <?php
 include 'libs/dblib.php';
+include 'libs/functions.php';
 
 $conn = dbConnect();
 
@@ -15,5 +16,7 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 $conn->close();
+
+echo guidv4();
 
 ?>

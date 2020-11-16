@@ -8,6 +8,7 @@ services:
     container_name: WebServer
     ports: 
       - 1414:80
+      - 4414:443
     volumes:
       - ./web:/var/www/html
     links:
