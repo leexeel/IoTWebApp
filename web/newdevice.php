@@ -27,7 +27,7 @@ drawPage();
       <input name=devPassword placeholder="Password" type="password" tabindex="4" required>
     </fieldset>
     <fieldset>
-      <textarea name=devDescr placeholder="Custom description" tabindex="5" required></textarea>
+      <textarea name=devDescr placeholder="Custom description" tabindex="5" ></textarea>
     </fieldset>
     <fieldset>
       <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
