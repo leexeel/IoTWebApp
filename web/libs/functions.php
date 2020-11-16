@@ -13,18 +13,32 @@ function guidv4()
 
 function drawPage(){
 echo " 
-<div class=\"mainTop\">
-IoT@Home NetPLUS Consult V1.0
-</div>
-<div class=\"mainBottom\">
-IoT@Home NetPLUS Consult V1.0
-</div>
-<div class=\"mainLeft\">
-<a class= meniu href=index.php>Main page</a><br>
-<a class= meniu href=newdevice.php>Register new device</a>
-</div>
+<div class=mainPage>
+    <div class=\"mainLeft\">
+        <a class= meniu href=index.php>Main page</a><br>
+        <a class= meniu href=newdevice.php>Register new device</a>
+    </div>
+
 ";
 }
+
+function drawHeader(){
+    echo " 
+    <div class=\"mainTop\">
+    IoT@Home NetPLUS Consult V1.0
+    </div>
+    ";
+}
+
+function drawFooter(){
+    echo "
+    </div> 
+    <div class=\"mainBottom\">
+    IoT@Home NetPLUS Consult V1.0
+    </div>
+    ";
+}
+
 
 ?>
 

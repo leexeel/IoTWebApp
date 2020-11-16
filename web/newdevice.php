@@ -7,12 +7,12 @@
 
 <?php
 include "libs/functions.php";
-
+drawHeader();
 drawPage();
 ?>
 
 <div class="container">  
-  <form id="contact" action="regNewDevice.php" method="post">
+  <form id="contact" action="regNewDevice.php" method="post" border=1>
     <h3>Register new IoT device</h3>
     <fieldset>
       <input name=devName placeholder="Device name" type="text" tabindex="1" required autofocus>
@@ -35,3 +35,6 @@ drawPage();
     <p class="copyright">Designed by <a href="https://hdt.ro" target="_blank" title="NetPLUS Consult" style=a>NetPLUS Consult</a></p>
   </form>
 </div>
+<?php
+drawFooter();
+?>

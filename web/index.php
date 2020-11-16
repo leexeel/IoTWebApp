@@ -7,6 +7,7 @@
 
 <?php
 include "libs/functions.php";
-
+drawHeader();
 drawPage();
+drawFooter();
 ?>
