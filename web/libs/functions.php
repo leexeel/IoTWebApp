@@ -21,7 +21,7 @@ echo "
     <div class=\"mainLeft\">
         <a class= meniu href=index.php>Main page</a><br>
         <a class= meniu href=newdevice.php>Register new device</a>
-        <a class= meniu href=viewdevice.php>View devices</a>
+        <a class= meniu href=viewdevices.php>Manage devices</a>
     </div>
 
 ";

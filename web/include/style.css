@@ -63,6 +63,7 @@ body {
     bottom: 10%;
     background: #3b4d81;
     border:solid black;
+    max-width: 150px;
 }
 
 #contact input[type="text"],
