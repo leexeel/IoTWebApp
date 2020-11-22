@@ -34,6 +34,7 @@ body {
     width: 100%;
     margin: 0 auto;
     position: relative;
+    float: left;
     height: 85%;
     position: absolute;
     bottom: 5%;
@@ -58,12 +59,23 @@ body {
 
 .mainLeft {
     height: 80%;
-    position: absolute;
+    float: left;
+    position: relative;
     top: 10%;
     bottom: 10%;
     background: #3b4d81;
     border:solid black;
     max-width: 150px;
+}
+
+.tableList {
+  margin-left: 150px;
+  margin-right: 150px;
+  height: 90%;
+  width: auto;
+  position: absolute;
+  bottom: 5%;
+  border:solid rgb(221, 90, 177);
 }
 
 #contact input[type="text"],
