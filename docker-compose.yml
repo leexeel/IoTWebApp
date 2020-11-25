@@ -29,12 +29,6 @@ services:
       - ../IotDB:/var/lib/mysql
       - ./dbScripts/createTables.sql:/docker-entrypoint-initdb.d/createTables.sql
 
-  iotmqtt:
-    build:
-      context: .
-      dockerfile: Dokerfile.ubuntu
-    container_name: mqtt
-    
 
 volumes:
   db:
