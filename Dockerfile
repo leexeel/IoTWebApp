@@ -12,10 +12,10 @@ RUN a2enmod ssl
 RUN service apache2 restart
 RUN apt-get update
 RUN apt-get install -y libxml2-dev libpcre3 libpcre3-dev libsdl-pango-dev groff-base mosquitto mosquitto-clients python-paho-mqtt
-RUN service mosquitto start
+
 RUN curl http://oss.oetiker.ch/rrdtool/pub/rrdtool-1.6.0.tar.gz -OL && \
     tar zxf rrdtool-1.6.0.tar.gz && \
     mkdir -p $RRD_PATH && \
     cd rrdtool-1.6.0 && ./configure --prefix=$RRD_PATH && make && make install
 
-EXPOSE 1883
+CMD service mosquitto start ; while true ; do sleep 100; done;
