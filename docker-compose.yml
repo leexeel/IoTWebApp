@@ -9,6 +9,7 @@ services:
     ports: 
       - 1414:80
       - 4414:443
+      - 1883:1883
     volumes:
       - ./web:/var/www/html
     links:
