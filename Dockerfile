@@ -6,6 +6,7 @@ ENV DATA_PATH /opt/rrd-data
 COPY https/server.crt /etc/apache2/ssl/server.crt
 COPY https/server.key /etc/apache2/ssl/server.key
 COPY https/dev.conf /etc/apache2/sites-enabled/dev.conf
+RUN mkdir /opt/mqtt-client
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli && apachectl restart
 RUN a2enmod rewrite
 RUN a2enmod ssl
@@ -17,5 +18,5 @@ RUN curl http://oss.oetiker.ch/rrdtool/pub/rrdtool-1.6.0.tar.gz -OL && \
     tar zxf rrdtool-1.6.0.tar.gz && \
     mkdir -p $RRD_PATH && \
     cd rrdtool-1.6.0 && ./configure --prefix=$RRD_PATH && make && make install
-
+COPY mqtt/mqtt-client.py /opt/mqtt-client/mqtt-client.py
 CMD service mosquitto start ; while true ; do sleep 100; done;
