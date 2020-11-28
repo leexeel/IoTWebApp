@@ -12,6 +12,7 @@ services:
       - 1883:1883
     volumes:
       - ./web:/var/www/html
+      - ./mqtt:/opt/mqtt
     links:
       - "iotdb"
   iotdb:
@@ -37,5 +38,6 @@ volumes:
   web:
   IotDB:
   IotWebApp:
+  mqtt:
 
 
