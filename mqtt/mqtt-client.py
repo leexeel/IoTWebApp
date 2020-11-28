@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 import time
+import uuid
 
 deviceList = []
 
@@ -10,7 +11,7 @@ def on_message(client, userdata, message):
     #print("message qos=",message.qos)
     #print("message retain flag=",message.retain)
     if message.topic.encode('ascii', 'ignore') == "events/join":
-        print(str(message.payload.decode("utf-8")))
+        #print(str(message.payload.decode("utf-8")))
         deviceParameters=str(message.payload.decode("utf-8")).split('|')
         deviceList.append(deviceParameters[0])
         pubThread = "events/" + deviceParameters[0]
@@ -18,6 +19,10 @@ def on_message(client, userdata, message):
         welcomeString = "Bine ai venit"
         client.publish(pubThread,welcomeString)
         print("Lista este:",deviceList)
+        for count in range(int(deviceParameters[1])):
+            sensorId = deviceParameters[0]+deviceParameters[2]+str(count)
+            sensorUUID = uuid.uuid5(uuid.NAMESPACE_DNS,sensorId)
+            print("Senzorul:",count," are UUID:",str(sensorUUID))
 
 def on_publish(client,userdata,result):             #create function for callback
     print("data published \n")
