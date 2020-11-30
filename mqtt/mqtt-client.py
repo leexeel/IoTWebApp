@@ -1,28 +1,23 @@
 import paho.mqtt.client as mqtt
 import time
-import uuid
+import iotDevice
 
 deviceList = []
 
 ############
 def on_message(client, userdata, message):
-    #print("message received " ,str(message.payload.decode("utf-8")))
     print("message topic=",message.topic.encode('ascii', 'ignore'),"value=",str(message.payload.decode("utf-8")))
-    #print("message qos=",message.qos)
-    #print("message retain flag=",message.retain)
     if message.topic.encode('ascii', 'ignore') == "events/join":
         #print(str(message.payload.decode("utf-8")))
         deviceParameters=str(message.payload.decode("utf-8")).split('|')
-        deviceList.append(deviceParameters[0])
+        deviceObj = iotDevice(deviceParameters[0],deviceParameters[1],deviceParameters[2])
+        deviceList.append(deviceObj)
         pubThread = "events/" + deviceParameters[0]
-        print("Comunicam pe topicul:",pubThread)
-        welcomeString = "Bine ai venit"
+        print("Communication over ",pubThread, " topic")
+        welcomeString = "Welcome device "+deviceObj.deviceID+" from "+deviceObj.deviceIP
         client.publish(pubThread,welcomeString)
         print("Lista este:",deviceList)
-        for count in range(int(deviceParameters[1])):
-            sensorId = deviceParameters[0]+deviceParameters[2]+str(count)
-            sensorUUID = uuid.uuid5(uuid.NAMESPACE_DNS,sensorId)
-            print("Senzorul:",count," are UUID:",str(sensorUUID))
+        
 
 def on_publish(client,userdata,result):             #create function for callback
     print("data published \n")
