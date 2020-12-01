@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 import time
-import iotDevice
+from iotDevice import iotDevice
 
 deviceList = []
 
@@ -10,14 +10,13 @@ def on_message(client, userdata, message):
     if message.topic.encode('ascii', 'ignore') == "events/join":
         #print(str(message.payload.decode("utf-8")))
         deviceParameters=str(message.payload.decode("utf-8")).split('|')
-        deviceObj = iotDevice(deviceParameters[0],deviceParameters[1],deviceParameters[2])
+        deviceObj = iotDevice(deviceParameters[0],int(deviceParameters[1]),deviceParameters[2],mqttClient)
         deviceList.append(deviceObj)
         pubThread = "events/" + deviceParameters[0]
-        print("Communication over ",pubThread, " topic")
         welcomeString = "Welcome device "+deviceObj.deviceID+" from "+deviceObj.deviceIP
-        client.publish(pubThread,welcomeString)
+        mqttClient.publish(pubThread,welcomeString)
+        mqttClient.subscribe(pubThread)
         print("Lista este:",deviceList)
-        
 
 def on_publish(client,userdata,result):             #create function for callback
     print("data published \n")
@@ -26,15 +25,15 @@ def on_publish(client,userdata,result):             #create function for callbac
 broker_address="192.168.10.66"
 
 print("creating new instance")
-client = mqtt.Client("P1") #create new instance
-client.on_message=on_message #attach function to callback
+mqttClient = mqtt.Client("ProcClients") #create new instance
+mqttClient.on_message=on_message #attach function to callback
 print("connecting to broker")
-client.connect(broker_address) #connect to broker
+mqttClient.connect(broker_address) #connect to broker
 print("Subscribing to topic","values/temperature")
-client.subscribe("values/temperature")
+mqttClient.subscribe("values/temperature")
 print("Subscribing to topic","values/humidity")
-client.subscribe("values/humidity")
+mqttClient.subscribe("values/humidity")
 print("Subscribing to topic","events/join")
-client.subscribe("events/join")
-client.on_publish = on_publish
-client.loop_forever() #start the loop
+mqttClient.subscribe("events/join")
+mqttClient.on_publish = on_publish
+mqttClient.loop_forever() #start the loop
